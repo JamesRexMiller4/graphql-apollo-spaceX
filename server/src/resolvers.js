@@ -1,3 +1,5 @@
+const { paginateResults } = require('./utils');
+
 module.exports = {
   Query: {
     launches: async (_, { pageSize = 20, after }, { dataSources }) => {
