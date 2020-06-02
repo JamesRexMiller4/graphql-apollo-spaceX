@@ -15,13 +15,18 @@ const link = new HttpLink({
 
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   cache,
-  link
+  link: new HttpLink({
+    uri: 'http://localhost:4000/graphql',
+
+    headers: {
+      authorization: localStorage.getItem('token'),
+    }, 
+  }),
 });
 
-injectStyles();
-ReactDOM.render(
-  <ApolloProvider client={client}>
-    <Pages />
-  </ApolloProvider>, 
-  document.getElementById('root')
-);
+cache.writeData({
+  data: {
+    isLoggedIn: !!localStorage.getItem('token'),
+    cartItems: [],
+  },
+});
