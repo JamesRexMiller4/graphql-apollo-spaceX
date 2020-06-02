@@ -3,6 +3,7 @@ import { ApolloCache } from 'apollo-cache';
 import * as GetCartItemTypes from './pages/__generated__/GetCartItems';
 import * as LaunchTileTypes from './pages/__generated__/LaunchTile';
 import { Resolvers } from 'apollo-client'
+import { GET_CART_ITEMS } from './pages/cart';
 
 export const typeDefs = gql`
   extend type Query {
@@ -28,9 +29,6 @@ type ResolverFn = (
 interface ResolverMap {
   [field: string]: ResolverFn;
 }
-
-// previous imports
-import { GET_CART_ITEMS } from './pages/cart.tsx';
 
 // type defs and other previous variable declarations
 
