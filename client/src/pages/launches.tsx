@@ -1,14 +1,28 @@
-import React, { Fragment }  from 'react';
-import { RouteComponentProps } from '@reach/router';
+import React, { Fragment } from 'react';
+import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
-interface LaunchesProps extends RouteComponentProps {}
+import { LaunchTile, Header, Button, Loading } from '../components';
+import { RouteComponentProps } from '@reach/router';
+import * as GetLaunchListTypes from './__generated__/GetLaunchList';
 
-const Launches: React.FC<LaunchesProps> = () => {
-  return <div />;
-}
-
-export const LAUNCH_TILE_DATA = gql`
+const GET_LAUNCHES = gql`
+  query launchList($after: String) {
+    launches(after: $after) {
+      cursor
+      hasMore
+      launches {
+        id
+        isBooked
+        rocket {
+          id
+          name
+        }
+        mission {
+          name
+          missionPatch
+        }
+      }
+    }
+  }
 `;
-
-export default Launches;
