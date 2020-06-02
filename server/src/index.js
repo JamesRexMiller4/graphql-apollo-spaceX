@@ -20,6 +20,9 @@ const server = new ApolloServer({
   },
   typeDefs,
   resolvers,
+  engine: {
+    apiKey: "service:spacex-prod:3CrXji8CMr8kJzbC3TQH4Q",
+  },
   dataSources: () => ({
     launchAPI: new LaunchAPI(),
     userAPI: new UserAPI({ store })
